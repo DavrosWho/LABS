@@ -11,15 +11,15 @@ class Goods
 		Goods();
 		Goods(char* aName, int aWCost, int aRCost, int aGoodsQuantity, char* aDate);
 		static int goodsCount;
-		void ChangeQuantity(int aGoodsQuantity);
-		void ChangeName(char* aName);
-		void ChangeDate(char* aDate);
-		void ToString(char* strGoods);
-		void ChangeWCost(int aWCost);
-		void Markup(int aMarkup);
-		void Markdown(int aMarkdown);
-		int GetMarkup() { return retailCost - wholesaleCost; };
-		int GetWCost() { return wholesaleCost; };
-		int GetRCost() { return retailCost; };
+		void changeQuantity(int aGoodsQuantity);
+		void changeName(char* aName);
+		void changeDate(char* aDate);
+		void toString(char* strGoods);
+		void changeWCost(int aWCost);
+		void markup(int aMarkup);
+		void markdown(int aMarkdown);
+		int getMarkup() { return retailCost - wholesaleCost; };
+		int getWCost() { return wholesaleCost; };
+		int getRCost() { return retailCost; };
 };
 
