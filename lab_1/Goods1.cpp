@@ -38,7 +38,7 @@ Goods::Goods(char* aName, int aWCost, int aRCost, int aGoodsQuantity, char* aDat
 	}
 };
 
-void Goods::ToString(char* strGoods) {
+void Goods::toString(char* strGoods) {
 	int j = 0;
 	char text[37] = "Name, quantity, wCost, rCost, date: ";
 	char strQuantity[7];
@@ -176,29 +176,29 @@ void Goods::ToString(char* strGoods) {
 	}
 }
 
-void Goods::ChangeQuantity(int aGoodsQuantity) {
+void Goods::changeQuantity(int aGoodsQuantity) {
 	goodsQuantity = aGoodsQuantity;
 }
 
-void Goods::ChangeName(char* aName) {
+void Goods::changeName(char* aName) {
 	for (int i = 0; i < 15; i++) {
 		goodsName[i] = aName[i];
 	}
 }
 
-void Goods::ChangeWCost(int aWCost) {
+void Goods::changeWCost(int aWCost) {
 	wholesaleCost = aWCost;
 }
 
-void Goods::Markup(int aMarkup) {
+void Goods::markup(int aMarkup) {
 	retailCost = wholesaleCost + aMarkup;
 }
 
-void Goods::Markdown(int aMarkdown) {
+void Goods::markdown(int aMarkdown) {
 	retailCost = retailCost - aMarkdown;
 }
 
-void Goods::ChangeDate(char* aDate) {
+void Goods::changeDate(char* aDate) {
 	for (int i = 0; i < 15; i++) {
 		goodsDate[i] = aDate[i];
 	}
