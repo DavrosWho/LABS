@@ -2,6 +2,7 @@
 #include "Goods1.h"
 using namespace std;
 
+//Тест на возможность смены наименования товара
 bool testName(int nameLength) {
 	if (nameLength > 15 || nameLength < 0) {
 		return false;
@@ -11,6 +12,7 @@ bool testName(int nameLength) {
 	}
 }
 
+//Тест на возможность смены количества единиц товара
 bool testQuantity(int aQuantity) {
 	if (aQuantity < 0 || aQuantity > 9999999) {
 		return false;
@@ -20,6 +22,7 @@ bool testQuantity(int aQuantity) {
 	}
 }
 
+//Тест на возможность смены оптовой стоимости товара
 bool testWCost(Goods aGoods, int aWCost) {
 	if (aGoods.getRCost() < aWCost) {
 		return false;
@@ -29,6 +32,7 @@ bool testWCost(Goods aGoods, int aWCost) {
 	}
 }
 
+//Тест на возможность смены наценки товара
 bool testMarkup(Goods aGoods, int aMarkup) {
 	if (aGoods.getWCost() + aMarkup > 9999999 || aMarkup < 0) {
 		return false;
@@ -38,6 +42,7 @@ bool testMarkup(Goods aGoods, int aMarkup) {
 	}
 }
 
+//Тест на возможность смены уценки товара
 bool testMarkdown(Goods aGoods, int aMarkdown) {
 	if (aGoods.getMarkup() < 0 || aMarkdown < 0) {
 		return false;
