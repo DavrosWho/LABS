@@ -21,7 +21,7 @@ bool testQuantity(int aQuantity) {
 }
 
 bool testWCost(Goods aGoods, int aWCost) {
-	if (aGoods.GetRCost() < aWCost) {
+	if (aGoods.getRCost() < aWCost) {
 		return false;
 	}
 	else {
@@ -30,7 +30,7 @@ bool testWCost(Goods aGoods, int aWCost) {
 }
 
 bool testMarkup(Goods aGoods, int aMarkup) {
-	if (aGoods.GetWCost() + aMarkup > 9999999 || aMarkup < 0) {
+	if (aGoods.getWCost() + aMarkup > 9999999 || aMarkup < 0) {
 		return false;
 	}
 	else {
@@ -39,7 +39,7 @@ bool testMarkup(Goods aGoods, int aMarkup) {
 }
 
 bool testMarkdown(Goods aGoods, int aMarkdown) {
-	if (aGoods.GetMarkup() < 0 || aMarkdown < 0) {
+	if (aGoods.getMarkup() < 0 || aMarkdown < 0) {
 		return false;
 	}
 	else {
@@ -56,8 +56,8 @@ int main()
 	cout << name1 << " goods ";
 	if (testName(nameLength1)) {
 		cout << "can be registered.\nChange-name-test was successfully\nOur goods: ";
-		Goods1.ChangeName(name1);
-		Goods1.ToString(strGoods1);
+		Goods1.changeName(name1);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
@@ -72,8 +72,8 @@ int main()
 	cout << name2 << " goods ";
 	if (testName(nameLength2)) {
 		cout << "can be registered.\nChange-name-test was successfully\nOur goods: ";
-		Goods1.ChangeName(name2);
-		Goods1.ToString(strGoods1);
+		Goods1.changeName(name2);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
@@ -86,8 +86,8 @@ int main()
 	int quantity1 = -100;
 	if (testQuantity(quantity1)) {
 		cout << "We can store " << quantity1 << " units of goods.\nChange-quantity-test was successfully\nOur goods:";
-		Goods1.ChangeQuantity(quantity1);
-		Goods1.ToString(strGoods1);
+		Goods1.changeQuantity(quantity1);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
@@ -100,8 +100,8 @@ int main()
 	quantity1 = 215;
 	if (testQuantity(quantity1)) {
 		cout << "We can store " << quantity1 << " units of goods.\nChange-quantity-test was successfully\nOur goods:";
-		Goods1.ChangeQuantity(quantity1);
-		Goods1.ToString(strGoods1);
+		Goods1.changeQuantity(quantity1);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
@@ -114,8 +114,8 @@ int main()
 	int wCost1 = 200;
 	if (testWCost(Goods1, wCost1)) {
 		cout << "Now wholesale cost is " << wCost1 << ".\nChange-WCost-test was successfully\nOur goods:";
-		Goods1.ChangeWCost(wCost1);
-		Goods1.ToString(strGoods1);
+		Goods1.changeWCost(wCost1);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
@@ -128,8 +128,8 @@ int main()
 	int markup1 = 101;
 	if (testMarkup(Goods1, markup1)) {
 		cout << "Change the value of the markup by " << markup1 << " coins.\nChange-Markup-test was successfulled\nOur goods:";
-		Goods1.Markup(markup1);
-		Goods1.ToString(strGoods1);
+		Goods1.markup(markup1);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
@@ -142,8 +142,8 @@ int main()
 	int markdown1 = 32;
 	if (testMarkdown(Goods1, markdown1)) {
 		cout << "We can add markdown of " << markdown1 << " coins.\nChange-Markdown-test was successfulled\nOur goods:";
-		Goods1.Markdown(markdown1);
-		Goods1.ToString(strGoods1);
+		Goods1.markdown(markdown1);
+		Goods1.toString(strGoods1);
 		for (int i = 0; i < 100; i++) {
 			cout << strGoods1[i];
 		}
