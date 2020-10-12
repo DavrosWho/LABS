@@ -2,11 +2,6 @@
 
 class Goods
 {
-		char* goodsName;
-		int goodsQuantity;
-		int wholesaleCost;
-		int retailCost;
-		char* goodsDate;
 	public:
 		Goods();
 		Goods(char* aName, int aWCost, int aRCost, int aGoodsQuantity, char* aDate);
@@ -21,5 +16,11 @@ class Goods
 		int getMarkup() { return retailCost - wholesaleCost; };
 		int getWCost() { return wholesaleCost; };
 		int getRCost() { return retailCost; };
+	private:
+		char* goodsName;
+		int goodsQuantity;
+		int wholesaleCost;
+		int retailCost;
+		char* goodsDate;
 };
 
