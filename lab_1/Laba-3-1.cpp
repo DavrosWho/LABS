@@ -88,7 +88,8 @@ int main()
 		cout << strGoods1[i];
 	}
 	cout << ".........................................................\n";
-	Goods1++;
+	//Goods1--;
+	--Goods1;
 	if (testIncrementDecrement(aDate1, Goods1)) {
 		cout << "Increment-Decrement-test was successul\nOur Goods after the change: ";
 		Goods1.toString(strGoods1);

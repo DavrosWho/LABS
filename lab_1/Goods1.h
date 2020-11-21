@@ -9,6 +9,8 @@ class Goods
 		Goods& operator=(Goods aGoods);
 		Goods operator++(int);
 		Goods operator--(int);
+		Goods operator++();
+		Goods operator--();
 		friend Goods operator+(int aQuantity, Goods aGoods);
 		friend Goods operator+(Goods aGoods, int aQuantity);
 		friend Goods operator-(Goods aGoods, int aQuantity);

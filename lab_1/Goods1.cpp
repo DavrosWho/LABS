@@ -62,6 +62,22 @@ Goods Goods::operator--(int) {
 	return *this;
 }
 
+Goods Goods::operator++() {
+	int64_t t1 = 86400;
+	time_t aDate1 = *goodsDate;
+	int64_t t = static_cast<int64_t>(aDate1) + t1;
+	goodsDate = new time_t(t);
+	return *this;
+}
+
+Goods Goods::operator--() {
+	int64_t t1 = 86400;
+	time_t aDate1 = *goodsDate;
+	int64_t t = static_cast<int64_t>(aDate1) - t1;
+	goodsDate = new time_t(t);
+	return *this;
+}
+
 Goods operator+(int aQuantity, Goods aGoods) {
 	aGoods.goodsQuantity += aQuantity;
 	return aGoods;
@@ -78,8 +94,7 @@ Goods operator-(Goods aGoods, int aQuantity) {
 }
 
 Goods::operator double() {
-	float aRCost = (float)retailCost;
-	return aRCost;
+	return (double)retailCost;
 }
 
 void Goods::toString(char* strGoods) {
