@@ -63,18 +63,12 @@ Goods Goods::operator--(int) {
 }
 
 Goods Goods::operator++() {
-	int64_t t1 = 86400;
-	time_t aDate1 = *goodsDate;
-	int64_t t = static_cast<int64_t>(aDate1) + t1;
-	goodsDate = new time_t(t);
+	(*this)++;
 	return *this;
 }
 
 Goods Goods::operator--() {
-	int64_t t1 = 86400;
-	time_t aDate1 = *goodsDate;
-	int64_t t = static_cast<int64_t>(aDate1) - t1;
-	goodsDate = new time_t(t);
+	(*this)--;
 	return *this;
 }
 
