@@ -98,7 +98,7 @@ int main()
 	Goods Goods2;
 	Goods Goods3;
 
-	cout << "Enter goods: ";
+	cout << "Enter goods (format: name/quantity/wCost/rCost/number_of_seconds): ";
 	cin >> Goods1;
 	cout << "First goods: " << Goods1 << '\n';
 	cout << "Second goods: " << Goods2 << "\n\n";
