@@ -6,7 +6,7 @@ class ChildGoods :
 public:
 	ChildGoods();
 	ChildGoods(char* aName, int aGoodsQuantity, int aWCost, int aRCost, time_t* aDate, int aCategory, int aType);
-	void toString(char* strGoods);
+	char* toString();
 	int getCategory() { return category; };
 	friend std::ostream& operator << (std::ostream& out, ChildGoods aGoods);
 private:

@@ -15,7 +15,6 @@ ChildGoods::ChildGoods() {
 	wholesaleCost = 100;
 	retailCost = 100;
 	goodsDate = new time_t(500000000);
-	toString(getStr());
 }
 
 ChildGoods::ChildGoods(char* aName, int aGoodsQuantity, int aWCost, int aRCost, time_t* aDate, int aCategory, int aType) {
@@ -29,17 +28,18 @@ ChildGoods::ChildGoods(char* aName, int aGoodsQuantity, int aWCost, int aRCost, 
 	wholesaleCost = aWCost;
 	retailCost = aRCost;
 	goodsDate = aDate;
-	toString(getStr());
 }
 
 
 std::ostream& operator << (std::ostream& out, ChildGoods aGoods) {
-	aGoods.toString(aGoods.getStr());
-	out << aGoods.getStr();
+	char* str = new char[242];
+	str = aGoods.toString();
+	out << str;
 	return out;
 }
 
-void ChildGoods::toString(char* strGoods) {
+char* ChildGoods::toString() {
+	char* strGoods = new char[250];
 	int j = 0;
 	char age1[9] = "0-3y.o. ";
 	char age2[9] = "3-5y.o. ";
@@ -237,7 +237,9 @@ void ChildGoods::toString(char* strGoods) {
 		}
 	}
 
-	for (j; j <= 150; j++) {
+	for (j; j < strlen(strGoods); j++) {
 		strGoods[j] = ' ';
 	}
+
+	return strGoods;
 }

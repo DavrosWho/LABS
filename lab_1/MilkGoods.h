@@ -7,6 +7,7 @@ public:
 	MilkGoods();
 	MilkGoods(char* aName, int aGoodsQuantity, int aWCost, int aRCost, time_t* aDate, time_t* aMilkDate);
 	void recount();
+	char* toString();
 	time_t* getMilkDate() { return milkDate; };
 private:
 	time_t* milkDate;

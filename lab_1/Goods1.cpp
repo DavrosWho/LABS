@@ -16,7 +16,6 @@ Goods::Goods() {
 	wholesaleCost = 100;
 	retailCost = 100;
 	goodsDate = new time_t(500000000);
-	toString(getStr());
 }
 
 Goods::Goods(char* aName, int aGoodsQuantity, int aWCost, int aRCost, time_t* aDate) {
@@ -29,7 +28,6 @@ Goods::Goods(char* aName, int aGoodsQuantity, int aWCost, int aRCost, time_t* aD
 	wholesaleCost = aWCost;
 	retailCost = aRCost;
 	goodsDate = aDate;
-	toString(getStr());
 }
 
 Goods& Goods::operator = (Goods aGoods) {
@@ -132,8 +130,6 @@ Goods& Goods::operator = (const char* strGoods) {
 	}
 	goodsDate = new time_t(intDate);
 
-	toString(getStr());
-	
 	return *this;
 }
 
@@ -182,7 +178,8 @@ Goods::operator double() {
 	return (double)retailCost;
 }
 
-void Goods::toString(char* strGoods) {
+char* Goods::toString() {
+	char* strGoods = new char[250];
 	int j = 0;
 	char text[37] = "Name, quantity, wCost, rCost, date: ";
 	char strQuantity[7];
@@ -316,9 +313,11 @@ void Goods::toString(char* strGoods) {
 		}
 	}
 
-	for (j; j <= 150; j++) {
+	for (j; j < strlen(strGoods); j++) {
 		strGoods[j] = ' ';
 	}
+
+	return strGoods;
 }
 
 std::ofstream& operator << (std::ofstream& fout, Goods aGoods) {
@@ -328,15 +327,16 @@ std::ofstream& operator << (std::ofstream& fout, Goods aGoods) {
 }
 
 std::ifstream& operator >> (std::ifstream& fin, Goods& aGoods) {
-	char* strGoods = new char;
+	char* strGoods = new char[100];
 	fin >> strGoods;
 	aGoods = strGoods;
 	return fin;
 }
 
 std::ostream& operator << (std::ostream& out, Goods aGoods) {
-	aGoods.toString(aGoods.getStr());
-	out << aGoods.getStr();
+	char* str = new char[242];
+	str = aGoods.toString();
+	out << str;
 	return out;
 }
 
