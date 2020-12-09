@@ -38,7 +38,7 @@ class Goods
 		int getRCost() { return retailCost; };
 		time_t* getDate() { return goodsDate; };
 		int getQuantity() { return goodsQuantity; };
-		~Goods() { goodsName = nullptr; };
+		~Goods() { delete[] goodsName; };
 	protected:
 		char* goodsName;
 		int goodsQuantity;
