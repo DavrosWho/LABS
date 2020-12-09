@@ -28,7 +28,7 @@ class Goods
 		void changeQuantity(int aGoodsQuantity);
 		void changeName(char* aName);
 		void changeDate(time_t* aDate);
-		void toString(char* strGoods);
+		char* toString();
 		void changeWCost(int aWCost);
 		void markup(int aMarkup);
 		void markdown(int aMarkdown);
@@ -38,9 +38,8 @@ class Goods
 		int getRCost() { return retailCost; };
 		time_t* getDate() { return goodsDate; };
 		int getQuantity() { return goodsQuantity; };
-		char* getStr() { return str; };
-	private:
-		char* str = new char[97];
+		~Goods() { goodsName = nullptr; };
+	protected:
 		char* goodsName;
 		int goodsQuantity;
 		int wholesaleCost;
