@@ -1,162 +1,188 @@
 ﻿#include <iostream>
+#include <fstream>
 #include "Goods1.h"
+#include "ChildGoods.h"
+#include "MilkGoods.h"
+#include "Deque.h"
 using namespace std;
 
-//Тест на возможность смены наименования товара
-bool testName(int nameLength) {
-	if (nameLength > 15 || nameLength < 0) {
-		return false;
-	}
-	else {
+bool testQuantity(Goods& aGoods, int aQuantity) {
+	try {
+		cout << "Trying to change the quantity to: " << aQuantity << endl;
+		aGoods.changeQuantity(aQuantity);
 		return true;
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+		return false;
 	}
 }
 
-//Тест на возможность смены количества единиц товара
-bool testQuantity(int aQuantity) {
-	if (aQuantity < 0 || aQuantity > 9999999) {
-		return false;
-	}
-	else {
+bool testName(Goods& aGoods, char* aName) {
+	try {
+		cout << "Trying to change the name to: " << aName<< endl;
+		aGoods.changeName(aName);
 		return true;
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+		return false;
 	}
 }
 
-//Тест на возможность смены оптовой стоимости товара
-bool testWCost(Goods aGoods, int aWCost) {
-	if (aGoods.getRCost() < aWCost) {
-		return false;
-	}
-	else {
+bool testWCost(Goods& aGoods, int aWCost) {
+	try {
+		cout << "Trying to change the wholesale cost to: " << aWCost << endl;
+		aGoods.changeWCost(aWCost);
 		return true;
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+		return false;
 	}
 }
 
-//Тест на возможность смены наценки товара
-bool testMarkup(Goods aGoods, int aMarkup) {
-	if (aGoods.getWCost() + aMarkup > 9999999 || aMarkup < 0) {
-		return false;
-	}
-	else {
+bool testMarkup(Goods& aGoods, int aMarkup) {
+	try {
+		cout << "Trying to change the markup to: " << aMarkup << endl;
+		aGoods.markup(aMarkup);
 		return true;
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+		return false;
 	}
 }
 
-//Тест на возможность смены уценки товара
-bool testMarkdown(Goods aGoods, int aMarkdown) {
-	if (aGoods.getMarkup() < 0 || aMarkdown < 0) {
-		return false;
-	}
-	else {
+bool testMarkdown(Goods& aGoods, int aMarkdown) {
+	try {
+		cout << "Trying to change the markdown to: " << aMarkdown << endl;
+		aGoods.markdown(aMarkdown);
 		return true;
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+		return false;
 	}
 }
 
 int main()
 {
-	Goods Goods1;
-	char* strGoods1 = new char[100];
-	const int nameLength1 = 25;
-	char name1[nameLength1] = "Raxacoricofallapatorians";
-	cout << name1 << " goods ";
-	if (testName(nameLength1)) {
-		cout << "can be registered.\nChange-name-test was successfully\nOur goods: ";
-		Goods1.changeName(name1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
-	}
-	else {
-		cout << "can't be registered. There cannot be more than 15 symbols\nCange-name-test failed\n\n";
-	}
-	
-	const int nameLength2 = 15;
-	char name2[nameLength2] = "Milk";
-	cout << name2 << " goods ";
-	if (testName(nameLength2)) {
-		cout << "can be registered.\nChange-name-test was successfully\nOur goods: ";
-		Goods1.changeName(name2);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
-	}
-	else {
-		cout << "can't be registered. There cannot be more than 15 symbols\nCange-name-test failed\n\n";
-	}
+	Goods goods1;
 
-	int quantity1 = -100;
-	if (testQuantity(quantity1)) {
-		cout << "We can store " << quantity1 << " units of goods.\nChange-quantity-test was successfully\nOur goods:";
-		Goods1.changeQuantity(quantity1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+	if (testQuantity(goods1, -5)) {
+		cout << "Change-quantity-test was successful" << endl;
 	}
 	else {
-		cout << "We can't store" << quantity1 << " units of goods. Our warehouse accommodates from 0 to 9999999 units of one goods\nChange-quantity-test failed\n\n";
+		cout << "Change-quantity-test was unsuccessful" << endl;
 	}
+	cout << goods1 << endl;
 
-	quantity1 = 215;
-	if (testQuantity(quantity1)) {
-		cout << "We can store " << quantity1 << " units of goods.\nChange-quantity-test was successfully\nOur goods:";
-		Goods1.changeQuantity(quantity1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+
+	if (testQuantity(goods1, 5)) {
+		cout << "Change-quantity-test was successful" << endl;
 	}
 	else {
-		cout << "We can't store" << quantity1 << " units of goods. Our warehouse accommodates from 0 to 9999999 units of one goods\nChange-quantity-test failed\n\n";
+		cout << "Change-quantity-test was unsuccessful" << endl;
 	}
+	cout << goods1 << endl;
 
-	int wCost1 = 200;
-	if (testWCost(Goods1, wCost1)) {
-		cout << "Now wholesale cost is " << wCost1 << ".\nChange-WCost-test was successfully\nOur goods:";
-		Goods1.changeWCost(wCost1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+
+	char name1[251] = "Name (251 symbol)";
+	char* aName1 = new char[251];
+	for (int i = 0; i < 251; i++) {
+		aName1[i] = name1[i];
+	}
+	if (testName(goods1, aName1)) {
+		cout << "Change-name-test was successful" << endl;
 	}
 	else {
-		cout << "Wholesale cost can't be " << wCost1 << ". It's bigger than retail cost\nChange-WCost-test failed\n\n";
+		cout << "Change-name-test was unsuccessful" << endl;
 	}
+	cout << goods1 << endl;
 
-	int markup1 = 101;
-	if (testMarkup(Goods1, markup1)) {
-		cout << "Change the value of the markup by " << markup1 << " coins.\nChange-Markup-test was successfulled\nOur goods:";
-		Goods1.markup(markup1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+
+	char name2[5] = "Name";
+	char* aName2 = new char[5];
+	for (int i = 0; i < 5; i++) {
+		aName2[i] = name2[i];
+	}
+	if (testName(goods1, aName2)) {
+		cout << "Change-name-test was successful" << endl;
 	}
 	else {
-		cout << "Markup can't be " << wCost1 << "coins. It's always > 0\nChange-Markup-test failed\n\n";
+		cout << "Change-name-test was unsuccessful" << endl;
 	}
+	cout << goods1 << endl;
 
-	int markdown1 = 32;
-	if (testMarkdown(Goods1, markdown1)) {
-		cout << "We can add markdown of " << markdown1 << " coins.\nChange-Markdown-test was successfulled\nOur goods:";
-		Goods1.markdown(markdown1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+	if (testWCost(goods1, -50)) {
+		cout << "Change-wcost-test was successful" << endl;
 	}
 	else {
-		cout << "We can't add markdown of " << markdown1 << " coins. Wholesale cost can't be less than retail cost.\nChange-Markdown-test failed\n\n";
+		cout << "Change-wcost-test was unsuccessful" << endl;
 	}
+	cout << goods1 << endl;
 
-	cout << Goods::goodsCount << " unique goods are stored in the warehouse.";
+
+	if (testWCost(goods1, 50)) {
+		cout << "Change-wcost-test was successful" << endl;
+	}
+	else {
+		cout << "Change-wcost-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
+
+
+	if (testWCost(goods1, 150)) {
+		cout << "Change-wcost-test was successful" << endl;
+	}
+	else {
+		cout << "Change-wcost-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
+
+
+	if (testMarkup(goods1, -20)) {
+		cout << "Change-markup-test was successful" << endl;
+	}
+	else {
+		cout << "Change-markup-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
+
+
+	if (testMarkup(goods1, 20)) {
+		cout << "Change-markup-test was successful" << endl;
+	}
+	else {
+		cout << "Change-markup-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
+
+
+	if (testMarkdown(goods1, -30)) {
+		cout << "Change-markdown-test was successful" << endl;
+	}
+	else {
+		cout << "Change-markdown-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
+
+
+	if (testMarkdown(goods1, 30)) {
+		cout << "Change-markdown-test was successful" << endl;
+	}
+	else {
+		cout << "Change-markdown-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
+
+
+	if (testMarkdown(goods1, 10)) {
+		cout << "Change-markdown-test was successful" << endl;
+	}
+	else {
+		cout << "Change-markdown-test was unsuccessful" << endl;
+	}
+	cout << goods1 << endl;
 }
