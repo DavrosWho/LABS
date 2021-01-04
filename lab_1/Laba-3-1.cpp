@@ -1,162 +1,86 @@
 ﻿#include <iostream>
+#include <fstream>
 #include "Goods1.h"
+#include "ChildGoods.h"
+#include "MilkGoods.h"
+#include "Deque.h"
 using namespace std;
 
-//Тест на возможность смены наименования товара
-bool testName(int nameLength) {
-	if (nameLength > 15 || nameLength < 0) {
-		return false;
+template <class T> bool testPushFront(Deque<T>& aDeque, Goods* aGoods) {
+	if (aDeque.getFront() == aGoods) {
+		return true;
 	}
 	else {
-		return true;
+		return false;
 	}
 }
 
-//Тест на возможность смены количества единиц товара
-bool testQuantity(int aQuantity) {
-	if (aQuantity < 0 || aQuantity > 9999999) {
-		return false;
+template <class T> bool testPushBack(Deque<T>& aDeque, Goods* aGoods) {
+	if (aDeque.getBack() == aGoods) {
+		return true;
 	}
 	else {
-		return true;
+		return false;
 	}
 }
 
-//Тест на возможность смены оптовой стоимости товара
-bool testWCost(Goods aGoods, int aWCost) {
-	if (aGoods.getRCost() < aWCost) {
-		return false;
-	}
-	else {
+template <class T> bool testPopFront(int last, Deque<T>& aDeque) {
+	if (last == aDeque.getCountObj()) {
 		return true;
 	}
-}
-
-//Тест на возможность смены наценки товара
-bool testMarkup(Goods aGoods, int aMarkup) {
-	if (aGoods.getWCost() + aMarkup > 9999999 || aMarkup < 0) {
-		return false;
-	}
 	else {
-		return true;
-	}
-}
-
-//Тест на возможность смены уценки товара
-bool testMarkdown(Goods aGoods, int aMarkdown) {
-	if (aGoods.getMarkup() < 0 || aMarkdown < 0) {
 		return false;
-	}
-	else {
-		return true;
 	}
 }
 
 int main()
 {
+	Deque <Goods> deque;
+	Goods* goodsArmy[10];
 	Goods Goods1;
-	char* strGoods1 = new char[100];
-	const int nameLength1 = 25;
-	char name1[nameLength1] = "Raxacoricofallapatorians";
-	cout << name1 << " goods ";
-	if (testName(nameLength1)) {
-		cout << "can be registered.\nChange-name-test was successfully\nOur goods: ";
-		Goods1.changeName(name1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+	Goods Goods2;
+	Goods Goods3;
+	goodsArmy[0] = &Goods1;
+	goodsArmy[1] = &Goods2;
+	goodsArmy[2] = &Goods3;
+
+	deque.pushBack(goodsArmy[0]);
+	deque.getDeque();
+
+	cout << endl << endl;
+
+	deque.pushFront(goodsArmy[1]);
+	deque.getDeque();
+	if (testPushFront(deque, goodsArmy[1])) {
+		cout << '\r' << '\r' << "Push-front-test was successful" << endl << endl;
 	}
 	else {
-		cout << "can't be registered. There cannot be more than 15 symbols\nCange-name-test failed\n\n";
-	}
-	
-	const int nameLength2 = 15;
-	char name2[nameLength2] = "Milk";
-	cout << name2 << " goods ";
-	if (testName(nameLength2)) {
-		cout << "can be registered.\nChange-name-test was successfully\nOur goods: ";
-		Goods1.changeName(name2);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
-	}
-	else {
-		cout << "can't be registered. There cannot be more than 15 symbols\nCange-name-test failed\n\n";
+		cout << '\r' << '\r' << "Push-front-test was unsuccessful" << endl << endl;
 	}
 
-	int quantity1 = -100;
-	if (testQuantity(quantity1)) {
-		cout << "We can store " << quantity1 << " units of goods.\nChange-quantity-test was successfully\nOur goods:";
-		Goods1.changeQuantity(quantity1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+	cout << endl << endl;
+
+	deque.pushBack(goodsArmy[2]);
+	deque.getDeque();
+	if (testPushBack(deque, goodsArmy[2])) {
+		cout << '\r' << '\r' << "Push-back-test was successful" << endl << endl;
 	}
 	else {
-		cout << "We can't store" << quantity1 << " units of goods. Our warehouse accommodates from 0 to 9999999 units of one goods\nChange-quantity-test failed\n\n";
+		cout << '\r' << '\r' << "Push-back-test was unsuccessful" << endl << endl;
 	}
 
-	quantity1 = 215;
-	if (testQuantity(quantity1)) {
-		cout << "We can store " << quantity1 << " units of goods.\nChange-quantity-test was successfully\nOur goods:";
-		Goods1.changeQuantity(quantity1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
+	cout << endl << endl;
+
+	int last = deque.getCountObj();
+	deque.popFront();
+	deque.getDeque();
+	if (testPopFront(last, deque)) {
+		cout << '\r' << '\r' << "Pop-front-test was successful" << endl << endl;
 	}
 	else {
-		cout << "We can't store" << quantity1 << " units of goods. Our warehouse accommodates from 0 to 9999999 units of one goods\nChange-quantity-test failed\n\n";
+		cout << '\r' << '\r' << "Pop-front-back-test was unsuccessful" << endl << endl;
 	}
 
-	int wCost1 = 200;
-	if (testWCost(Goods1, wCost1)) {
-		cout << "Now wholesale cost is " << wCost1 << ".\nChange-WCost-test was successfully\nOur goods:";
-		Goods1.changeWCost(wCost1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
-	}
-	else {
-		cout << "Wholesale cost can't be " << wCost1 << ". It's bigger than retail cost\nChange-WCost-test failed\n\n";
-	}
-
-	int markup1 = 101;
-	if (testMarkup(Goods1, markup1)) {
-		cout << "Change the value of the markup by " << markup1 << " coins.\nChange-Markup-test was successfulled\nOur goods:";
-		Goods1.markup(markup1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
-	}
-	else {
-		cout << "Markup can't be " << wCost1 << "coins. It's always > 0\nChange-Markup-test failed\n\n";
-	}
-
-	int markdown1 = 32;
-	if (testMarkdown(Goods1, markdown1)) {
-		cout << "We can add markdown of " << markdown1 << " coins.\nChange-Markdown-test was successfulled\nOur goods:";
-		Goods1.markdown(markdown1);
-		Goods1.toString(strGoods1);
-		for (int i = 0; i < 100; i++) {
-			cout << strGoods1[i];
-		}
-		cout << "\n\n";
-	}
-	else {
-		cout << "We can't add markdown of " << markdown1 << " coins. Wholesale cost can't be less than retail cost.\nChange-Markdown-test failed\n\n";
-	}
-
-	cout << Goods::goodsCount << " unique goods are stored in the warehouse.";
+	cout << Goods::goodsCount << " unique goods are stored in the warehouse." << endl;
+	cout << deque.getCountObj() << " unique goods are stored in the deque." << endl;
 }
