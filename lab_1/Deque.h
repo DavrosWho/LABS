@@ -10,15 +10,15 @@ template <class T> class Deque {
 	public:
 		Element* prev = NULL;
 		Element* next = NULL;
-		Goods* obj;
+		T* obj = NULL;
 	};
 public:
 	void getDeque();
-	void pushFront(Goods* aGoods);
-	void pushBack(Goods* aGoods);
+	void pushFront(T* aGoods);
+	void pushBack(T* aGoods);
 	void popFront();
-	Goods* getFront() { return front->obj; };
-	Goods* getBack() { return back->obj; };
+	T* getFront() { return front->obj; };
+	T* getBack() { return back->obj; };
 	int getCountObj() { return countObj; };
 	~Deque();
 private:
@@ -27,7 +27,7 @@ private:
 	int countObj = 0;
 };
 
-template <class T> void Deque<T>::getDeque() {
+template <class Goods> void Deque<Goods>::getDeque() {
 	cout << "Our deque:" << endl;
 	if (countObj != 0) {
 		Element* tool = front;
@@ -42,7 +42,37 @@ template <class T> void Deque<T>::getDeque() {
 	}
 }
 
-template <class T> void Deque<T>::pushFront(Goods* aGoods) {
+void Deque<int>::getDeque() {
+	cout << "Our deque:" << endl;
+	if (countObj != 0) {
+		Element* tool = front;
+		for (int i = 0; i < countObj; i++) {
+			cout << tool->obj[0] << endl;
+			tool = tool->next;
+		}
+		cout << endl;
+	}
+	else {
+		cout << "Deque is empty" << endl;
+	}
+}
+
+void Deque<char>::getDeque() {
+	cout << "Our deque:" << endl;
+	if (countObj != 0) {
+		Element* tool = front;
+		for (int i = 0; i < countObj; i++) {
+			cout << tool->obj[0] << endl;
+			tool = tool->next;
+		}
+		cout << endl;
+	}
+	else {
+		cout << "Deque is empty" << endl;
+	}
+}
+
+template <class T> void Deque<T>::pushFront(T* aGoods) {
 	if (countObj == 0) {
 		front = new Element;
 		back = front;
@@ -58,7 +88,7 @@ template <class T> void Deque<T>::pushFront(Goods* aGoods) {
 	countObj++;
 }
 
-template <class T> void Deque<T>::pushBack(Goods* aGoods) {
+template <class T> void Deque<T>::pushBack(T* aGoods) {
 	if (countObj == 0) {
 		back = new Element;
 		front = back;
