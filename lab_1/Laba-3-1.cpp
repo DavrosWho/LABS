@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include "Goods1.h"
 #include "ChildGoods.h"
@@ -6,7 +6,7 @@
 #include "Deque.h"
 using namespace std;
 
-bool testPushFront(Deque& aDeque, Goods* aGoods) {
+bool testPushFront(Deque<Goods>& aDeque, Goods* aGoods) {
 	if (aDeque.getFront() == aGoods) {
 		return true;
 	}
@@ -15,7 +15,7 @@ bool testPushFront(Deque& aDeque, Goods* aGoods) {
 	}
 }
 
-bool testPushBack(Deque& aDeque, Goods* aGoods) {
+bool testPushBack(Deque<Goods>& aDeque, Goods* aGoods) {
 	if (aDeque.getBack() == aGoods) {
 		return true;
 	}
@@ -24,7 +24,7 @@ bool testPushBack(Deque& aDeque, Goods* aGoods) {
 	}
 }
 
-bool testPopFront(int last, Deque& aDeque) {
+bool testPopFront(int last, Deque<Goods>& aDeque) {
 	if (last == aDeque.getCountObj()) {
 		return true;
 	}
@@ -37,16 +37,17 @@ template <class T> void testGetGoods(T& aGoods) {
 	cout << aGoods << endl;
 }
 
-int main()
-{
+void testMain1() {
 	MilkGoods milk;
 	Goods pen;
 	ChildGoods tank;
 	testGetGoods(pen);
 	testGetGoods(milk);
 	testGetGoods(tank);
-	
-	Deque deque;
+}
+
+void testMain2() {
+	Deque <Goods> deque;
 	Goods* goodsArmy[10];
 	Goods Goods1;
 	Goods Goods2;
@@ -92,7 +93,13 @@ int main()
 		cout << '\r' << '\r' << "Pop-front-back-test was unsuccessful" << endl << endl;
 	}
 
-	cout << Goods::goodsCount << " unique goods are stored in the warehouse." << endl;
 	cout << deque.getCountObj() << " unique goods are stored in the deque." << endl;
+}
+
+int main()
+{
+	testMain1();
+	testMain2();
+	cout << Goods::goodsCount << " unique goods are stored in the warehouse." << endl;
 	return 0;
 }
