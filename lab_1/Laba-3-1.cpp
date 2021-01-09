@@ -33,8 +33,19 @@ bool testPopFront(int last, Deque& aDeque) {
 	}
 }
 
+template <class T> void testGetGoods(T& aGoods) {
+	cout << aGoods << endl;
+}
+
 int main()
 {
+	MilkGoods milk;
+	Goods pen;
+	ChildGoods tank;
+	testGetGoods(pen);
+	testGetGoods(milk);
+	testGetGoods(tank);
+	
 	Deque deque;
 	Goods* goodsArmy[10];
 	Goods Goods1;
@@ -83,4 +94,5 @@ int main()
 
 	cout << Goods::goodsCount << " unique goods are stored in the warehouse." << endl;
 	cout << deque.getCountObj() << " unique goods are stored in the deque." << endl;
+	return 0;
 }
