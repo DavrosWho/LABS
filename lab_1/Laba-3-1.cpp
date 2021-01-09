@@ -6,64 +6,79 @@
 #include "Deque.h"
 using namespace std;
 
-bool testPushFront(Deque<Goods>& aDeque, Goods* aGoods) {
-	if (aDeque.getFront() == aGoods) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-bool testPushBack(Deque<Goods>& aDeque, Goods* aGoods) {
-	if (aDeque.getBack() == aGoods) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-bool testPopFront(int last, Deque<Goods>& aDeque) {
-	if (last == aDeque.getCountObj()) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
-template <class T> void testGetGoods(T& aGoods) {
-	cout << aGoods << endl;
-}
-
-void testMain1() {
-	MilkGoods milk;
-	Goods pen;
-	ChildGoods tank;
-	testGetGoods(pen);
-	testGetGoods(milk);
-	testGetGoods(tank);
-}
-
-void testMain2() {
+bool testPushFront() {
 	Deque <Goods> deque;
-	Goods* goodsArmy[10];
 	Goods Goods1;
 	Goods Goods2;
-	Goods Goods3;
-	goodsArmy[0] = &Goods1;
-	goodsArmy[1] = &Goods2;
-	goodsArmy[2] = &Goods3;
-
-	deque.pushBack(goodsArmy[0]);
+	Goods* Goods11 = &Goods2;
+	deque.pushFront(Goods11);
+	Goods11 = &Goods1;
 	deque.getDeque();
-
-	cout << endl << endl;
-
-	deque.pushFront(goodsArmy[1]);
+	cout << "Push front function at work" << endl << endl;
+	deque.pushFront(Goods11);
 	deque.getDeque();
-	if (testPushFront(deque, goodsArmy[1])) {
+	if (deque.getFront() == Goods11) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool testPushBack() {
+	Deque <Goods> deque;
+	Goods Goods1;
+	Goods Goods2;
+	Goods* Goods11 = &Goods2;
+	deque.pushBack(Goods11);
+	Goods11 = &Goods1;
+	deque.getDeque();
+	cout << "Push back function at work" << endl << endl;
+	deque.pushBack(Goods11);
+	deque.getDeque();
+	if (deque.getBack() == Goods11) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool testPopFront() {
+	Deque <Goods> deque;
+	Goods Goods1;
+	Goods* Goods11 = &Goods1;
+	deque.pushBack(Goods11);
+	deque.getDeque();
+	cout << "Pop front function at work" << endl << endl;
+	int last = deque.getCountObj();
+	deque.popFront();
+	deque.getDeque();
+	if (last - 1 == deque.getCountObj()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool testGetGoods() {
+	Goods pen;
+	MilkGoods milk;
+	ChildGoods tank;
+	try {
+		cout << pen << endl << milk << endl << tank << endl;
+		return true;
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+		return false;
+	}
+}
+
+int main()
+{
+	if (testPushFront()) {
 		cout << '\r' << '\r' << "Push-front-test was successful" << endl << endl;
 	}
 	else {
@@ -72,9 +87,7 @@ void testMain2() {
 
 	cout << endl << endl;
 
-	deque.pushBack(goodsArmy[2]);
-	deque.getDeque();
-	if (testPushBack(deque, goodsArmy[2])) {
+	if (testPushBack()) {
 		cout << '\r' << '\r' << "Push-back-test was successful" << endl << endl;
 	}
 	else {
@@ -83,23 +96,22 @@ void testMain2() {
 
 	cout << endl << endl;
 
-	int last = deque.getCountObj();
-	deque.popFront();
-	deque.getDeque();
-	if (testPopFront(last, deque)) {
+	if (testPopFront()) {
 		cout << '\r' << '\r' << "Pop-front-test was successful" << endl << endl;
 	}
 	else {
 		cout << '\r' << '\r' << "Pop-front-back-test was unsuccessful" << endl << endl;
 	}
 
-	cout << deque.getCountObj() << " unique goods are stored in the deque." << endl;
-}
+	cout << endl << endl;
 
-int main()
-{
-	testMain1();
-	testMain2();
+	if (testGetGoods()) {
+		cout << '\r' << '\r' << "Get-goods-test was successful" << endl << endl;
+	}
+	else {
+		cout << '\r' << '\r' << "Get-goods-test was unsuccessful" << endl << endl;
+	}
+
 	cout << Goods::goodsCount << " unique goods are stored in the warehouse." << endl;
 	return 0;
 }
