@@ -28,7 +28,7 @@ class Goods
 		void changeQuantity(int aGoodsQuantity);
 		void changeName(char* aName);
 		void changeDate(time_t* aDate);
-		char* toString();
+		virtual char* toString();
 		void changeWCost(int aWCost);
 		void markup(int aMarkup);
 		void markdown(int aMarkdown);
